@@ -1,6 +1,6 @@
 {
   "name": "ap-lib/error-node",
-  "description": "",
+  "description": "A simple and lightweight PHP library for handling structured error messages, useful for validation, data processing, and API responses",
   "type": "library",
   "homepage": "https://github.com/ap-lib/error-node",
   "license": "MIT",
