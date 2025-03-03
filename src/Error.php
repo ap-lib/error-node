@@ -1,6 +1,6 @@
 <?php
 
-namespace AP\NodeError;
+namespace AP\ErrorNode;
 
 class Error
 {

@@ -26,9 +26,9 @@ composer require ap-lib/error-node
 ### Basic usage
 
 ```php
-use AP\NodeError\Error;
-use AP\NodeError\Errors;
-use AP\NodeError\ThrowableErrors;
+use AP\ErrorNode\Error;
+use AP\ErrorNode\Errors;
+use AP\ErrorNode\ThrowableErrors;
 
 // Creating a single error
 $error = new Error("Invalid input", ["user", "email"]);
