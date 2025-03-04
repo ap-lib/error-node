@@ -24,12 +24,13 @@ class Errors
 
     /**
      * @param string $message
+     * @param array $context
      * @param array $path
      * @return self
      */
-    public static function one(string $message, array $path = []): self
+    public static function one(string $message, array $context = [], array $path = []): self
     {
-        return new self([new Error($message, $path)]);
+        return new self([new Error($message, $path, $context)]);
     }
 
     /**
