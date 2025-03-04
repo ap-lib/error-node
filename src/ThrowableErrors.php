@@ -2,7 +2,6 @@
 
 namespace AP\ErrorNode;
 
-use Error;
 use RuntimeException;
 
 class ThrowableErrors extends \Error
