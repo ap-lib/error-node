@@ -4,22 +4,23 @@ namespace AP\ErrorNode;
 
 class Error
 {
-    readonly public string $message;
-
     public function __construct(
-        string                $message,
-        public array          $path = [],
-        readonly public array $context = [],
+        readonly public string $message,
+        public array           $path = [],
+        readonly public array  $context = [],
     )
     {
+    }
+
+    public function getFinalMessage(): string
+    {
         if (empty($this->context)) {
-            $this->message = $message;
-        } else {
-            $keys = [];
-            foreach ($this->context as $k => $v) {
-                $keys[] = '{' . $k . '}';
-            }
-            $this->message = str_replace($keys, $this->context, $message);
+            return $this->message;
         }
+        $keys = [];
+        foreach ($this->context as $k => $v) {
+            $keys[] = '{' . $k . '}';
+        }
+        return str_replace($keys, $this->context, $this->message);
     }
 }
