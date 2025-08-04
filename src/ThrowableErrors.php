@@ -24,6 +24,27 @@ class ThrowableErrors extends \Error
     }
 
     /**
+     * Prepends a path segment to all existing error paths.
+     *
+     * This is useful when nesting validation contexts. Each error's path
+     * will be updated to reflect its position relative to a new root or scope.
+     *
+     * Example:
+     *   Original path: ['email']
+     *   After prependPathSegment('user'): ['user', 'email']
+     *
+     * @param string $segment The path segment to prepend.
+     * @return static Returns the current instance for method chaining.
+     */
+    public function prependPathSegment(string $segment): static
+    {
+        foreach ($this->errors as $error){
+            $error->path = array_merge([$segment], $error->path);
+        }
+        return $this;
+    }
+
+    /**
      * @param string $message
      * @param array $path
      * @return self
