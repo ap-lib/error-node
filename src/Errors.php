@@ -2,9 +2,10 @@
 
 namespace AP\ErrorNode;
 
+use JsonSerializable;
 use RuntimeException;
 
-class Errors
+class Errors implements JsonSerializable
 {
     /**
      * @var array<Error>
@@ -40,7 +41,7 @@ class Errors
      */
     public function prependPathSegment(string $segment): static
     {
-        foreach ($this->errors as $error){
+        foreach ($this->errors as $error) {
             $error->path = array_merge([$segment], $error->path);
         }
         return $this;
@@ -75,4 +76,12 @@ class Errors
         return new ThrowableErrors($this->errors);
     }
 
+    public function jsonSerialize(): array
+    {
+        $res = [];
+        foreach ($this->errors as $error) {
+            $res[implode(".", $error->path)] = $error->getFinalMessage();
+        }
+        return $res;
+    }
 }
